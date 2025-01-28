@@ -18,12 +18,14 @@ namespace ColorlessBlueBotsFlyFuriously
             // Test
             for (int i = 0; i < 10000; i++)
             {
+                // Hard reset
                 if (field >= 16)
                 {
                     field = 0;
                     doxa = 0;
                     Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | REINITIALIZING...!");
                 }
+                // Typical loop
                 else
                 {
                     Influence();
