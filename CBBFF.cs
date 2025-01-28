@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace ColorlessBlueBotsFlyFuriously
 {
@@ -10,37 +11,43 @@ namespace ColorlessBlueBotsFlyFuriously
             Random rand = new Random();
             int field = 0;
             int doxa = 0;
+
+            // Test(10000);
+
             // Test
-            for (int i = 0; i < 10000; i++)
+            void Test(int amount)
             {
-                // Hard reset
-                if (field >= 4)
+                for (int i = 0; i < amount; i++)
                 {
-                    field = 0;
-                    doxa = 0;
-                    Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | REINITIALIZING...!");
-                }
-                // Typical loop
-                else
-                {
-                    Influence();
-                    string selection = Selection();
-                    string blank = "";
-                    string wild = "";
-                    if (selection == "Wild")
+                    // Hard reset
+                    if (field >= 4)
                     {
-                        Chatter();
-                        blank = Blank();
-                        wild = Wild();
+                        field = 0;
+                        doxa = 0;
+                        Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | REINITIALIZING...!");
                     }
-                    // Record outcome
-                    if (wild != "")
-                    {
-                        Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | Selection: " + selection + " | Blank: " + blank + " | Wild: " + wild);
-                    }
+                    // Typical loop
                     else
                     {
-                        Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | Selection: " + selection);
+                        Influence();
+                        string selection = Selection();
+                        string blank = "";
+                        string wild = "";
+                        if (selection == "Wild")
+                        {
+                            Chatter();
+                            blank = Blank();
+                            wild = Wild();
+                        }
+                        // Record outcome
+                        if (wild != "")
+                        {
+                            Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | Selection: " + selection + " | Blank: " + blank + " | Wild: " + wild);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Test: " + i + " | Field: " + field + " | Doxa: " + doxa + " | Selection: " + selection);
+                        }
                     }
                 }
             }
