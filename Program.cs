@@ -14,7 +14,7 @@ namespace ColorlessBlueBotsFlyFuriously
             for (int i = 0; i < 10000; i++)
             {
                 // Hard reset
-                if (field >= 16)
+                if (field >= 4)
                 {
                     field = 0;
                     doxa = 0;
