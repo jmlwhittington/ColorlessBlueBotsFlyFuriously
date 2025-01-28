@@ -1,15 +1,21 @@
 ﻿using System;
+using X.Bluesky;
 
 namespace ColorlessBlueBotsFlyFuriously
 {
     internal class CBBFF
     {
-        static void Main()
+        static async Task Main()
         {
             // Variables
             Random rand = new Random();
             int field = 0;
             int doxa = 0;
+
+            var handle = "colorlessbluebots.bsky.social";
+            var pass = "";
+            BlueskyClient client = new BlueskyClient(handle, pass);
+            await client.Post("Test");
 
             // Test(10000);
 
