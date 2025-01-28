@@ -1,5 +1,5 @@
 # ColorlessBlueBotsFlyFuriously
-A Bluesky bot written in C# using [FishyFlip](https://drasticactions.github.io/FishyFlip/index.html) A Bluesky bot written in C# using FishyFlip to post Markovian variations of popular linguistic phrases like "Colorless green ideas sleep furiously." Totally unconsciously!
+A Bluesky bot written in C# to post Markovian variations of popular linguistic phrases like "Colorless green ideas sleep furiously." Totally unconscious!
 
 If you have any questions, feel free to create a discussion or raise an issue!
 
