@@ -2,7 +2,7 @@
 
 namespace ColorlessBlueBotsFlyFuriously
 {
-    internal class Program
+    internal class CBBFF
     {
         static void Main()
         {
