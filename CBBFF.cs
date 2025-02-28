@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
 using X.Bluesky;
 
 namespace ColorlessBlueBotsFlyFuriously
@@ -8,12 +10,34 @@ namespace ColorlessBlueBotsFlyFuriously
         static async Task Main()
         {
             // Variables
+            string path = Directory.GetCurrentDirectory();
+            string handle = "";
+            string pass = "";
             Random rand = new Random();
             int field = 0;
             int doxa = 0;
 
-            var handle = "colorlessbluebots.bsky.social";
-            var pass = "";
+            if (!File.Exists(path + "/login.txt"))
+            {
+                File.WriteAllText(path + "/login.txt",
+                    "===INPUT ALL ENTRIES ON THE LINE FOLLOWING THE LABEL===" + Environment.NewLine + Environment.NewLine +
+                    "HANDLE:" + Environment.NewLine + Environment.NewLine + Environment.NewLine +
+                    "PASSWORD/APP PASSWORD:" + Environment.NewLine
+                );
+                Console.WriteLine(DateTime.Now + ": You need to input your handle and password/app password into login.txt! It can be found in the same location as this program." + Environment.NewLine + "Press any key to exit...");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            else
+            {
+                string[] login = File.ReadAllLines(path + "/login.txt");
+                foreach (string item in login)
+                {
+                    handle = login[3];
+                    pass = login[6];
+                }
+            }
+
             BlueskyClient client = new BlueskyClient(handle, pass);
             await client.Post("Test");
 
