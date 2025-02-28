@@ -148,43 +148,43 @@ namespace ColorlessBlueBotsFlyFuriously
                             int line = rand.Next(1, 587);
                             if (error == 0)
                             {
-                                post = "Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object.\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 1)
                             {
-                                post = "Unhandled exception. System.IndexOutOfRangeException: Index was outside the bounds of the array.\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.IndexOutOfRangeException: Index was outside the bounds of the array. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 2)
                             {
-                                post = "Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.DivideByZeroException: Attempted to divide by zero. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 3)
                             {
-                                post = "Unhandled exception. System.IO.FileNotFoundException: Could not find file 'C:\\Data\\output.txt'.\r\n   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.IO.FileNotFoundException: Could not find file 'C:\\Data\\output.txt'. at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 4)
                             {
-                                post = "Unhandled exception. System.FormatException: Input string was not in a correct format.\r\n   at System.Number.ThrowFormatException()\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.FormatException: Input string was not in a correct format. at System.Number.ThrowFormatException() at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 5)
                             {
-                                post = "Process is terminated due to StackOverflowException.\r\n";
+                                post = "Process is terminated due to StackOverflowException.";
                             }
                             else if (error == 6)
                             {
-                                post = "Unhandled exception. System.InvalidOperationException: Operation is not valid due to the current state of the object.\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.InvalidOperationException: Operation is not valid due to the current state of the object. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 7)
                             {
-                                post = "Unhandled exception. System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown.\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 8)
                             {
-                                post = "Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.\r\n   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary. at System.Collections.Generic.Dictionary`2.get_Item(TKey key) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else if (error == 9)
                             {
-                                post = "Unhandled exception. System.UnauthorizedAccessException: Access to the path 'C:\\JMLW\\Documents\\Important\\concepts.txt' is denied.\r\n   at System.IO.File.Open(String path, FileMode mode)\r\n   at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\BlueskyBot\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line + "\r\n";
+                                post = "Unhandled exception. System.UnauthorizedAccessException: Access to the path 'C:\\JMLW\\Documents\\Important\\concepts.txt' is denied. at System.IO.File.Open(String path, FileMode mode) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
                             }
                             else
                             {
