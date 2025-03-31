@@ -45,11 +45,11 @@ namespace ColorlessBlueBotsFlyFuriously
             }
 
             // Logging setup
-            if (!Directory.Exists(path + "/logs"))
+            if (!Directory.Exists(path + "/Logs"))
             {
-                Directory.CreateDirectory(path + "/logs");
+                Directory.CreateDirectory(path + "/Logs");
             }
-            File.WriteAllText(path + startTime + ".txt", "");
+            File.WriteAllText(path + "/Logs" + startTime + ".txt", "");
 
             for (int i = 0; i < 100; i++)
             {
@@ -590,7 +590,7 @@ namespace ColorlessBlueBotsFlyFuriously
             void Log(string type)
             {
                 Console.WriteLine("[" + DateTime.Now + "]: Posted " + type);
-                File.AppendAllText(path + "/logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + Environment.NewLine);
+                File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + Environment.NewLine);
             }
         }
     }
