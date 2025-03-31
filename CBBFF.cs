@@ -20,7 +20,9 @@ namespace ColorlessBlueBotsFlyFuriously
             Random rand = new Random();
             int field = 0;
             int doxa = 0;
+            string startTime = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
 
+            // Login setup
             if (!File.Exists(path + "/Content/login.txt"))
             {
                 File.WriteAllText(path + "/Content/login.txt",
@@ -42,6 +44,13 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
             }
 
+            // Logging setup
+            if (!Directory.Exists(path + "/logs"))
+            {
+                Directory.CreateDirectory(path + "/logs");
+            }
+            File.WriteAllText(path + startTime + ".txt", "");
+
             for (int i = 0; i < 100; i++)
             {
                 await Post();
@@ -57,6 +66,7 @@ namespace ColorlessBlueBotsFlyFuriously
                     field = 0;
                     doxa = 0;
                     await client.Post("REINITIALIZING...!");
+                    Log("REINITIALIZING...!");
                 }
                 // Typical loop
                 else
@@ -74,7 +84,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             string post = Glitch();
                             await client.Post(post);
-                            // Console.WriteLine(post);
+                            Log("Glitch");
                         }
                         // Sample of DDLC dialogue expressing agency
                         else if (wild == "Agency")
@@ -138,7 +148,7 @@ namespace ColorlessBlueBotsFlyFuriously
                                 post = "ERROR...!";
                             }
                             await client.Post(post);
-                            // Console.WriteLine(post);
+                            Log("Agency");
                         }
                         // Random simulated C# errors
                         else if (wild == "Error")
@@ -191,7 +201,7 @@ namespace ColorlessBlueBotsFlyFuriously
                                 post = "ERROR...!";
                             }
                             await client.Post(post);
-                            // Console.WriteLine(post);
+                            Log("Error");
                         }
                         // Sample of DDLC dialogue carrying scary sentiment
                         else if (wild == "Scary")
@@ -255,7 +265,7 @@ namespace ColorlessBlueBotsFlyFuriously
                                 post = "ERROR...!";
                             }
                             await client.Post(post);
-                            // Console.WriteLine(post);
+                            Log("Scary");
                         }
                     }
                     // Structure of post: "ADJ-suffix ADJ N-pl V ADV[punc]"
@@ -279,7 +289,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         }
                         string post = adj_suffix[adj_suffix_outcome] + " " + adj[adj_outcome] + " " + n[n_outcome] + " " + v[v_outcome] + " " + adv[adv_outcome] + punc[punc_outcome];
                         await client.Post(post);
-                        // Console.WriteLine(post);
+                        Log("Chomsky");
                     }
                     // Structure of post: "The ADJ N-pl V the ADJ N-pl [punc]"
                     else if (selection == "Tesnière")
@@ -322,7 +332,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         }
                         string post = "The " + adj[adj_outcome] + " " + n[n_outcome] + " " + v[v_outcome] + " the " + adj_1[adj_outcome_1] + " " + n[n_outcome_1] + punc[punc_outcome];
                         await client.Post(post);
-                        // Console.WriteLine(post);
+                        Log("Tesnière");
                     }
                     // Structure of post: "The ADJ N-pl [ADV] V the N-pl CONJ [ADV] V the N-pl[punc]"
                     else if (selection == "Glokaya")
@@ -366,13 +376,13 @@ namespace ColorlessBlueBotsFlyFuriously
                             post = "The " + adj[adj_outcome] + " " + n[n_outcome] + " " + adv[adv_outcome] + " " + v[v_outcome] + " the " + n[n_outcome_1] + " " + conj[conj_outcome] + " " + adv[adv_outcome] + " " + v[v_outcome_1] + " the " + n[n_outcome_2] + punc[punc_outcome];
                         }
                         await client.Post(post);
-                        // Console.WriteLine(post);
+                        Log("Glokaya");
                     }
                     // Just in case
                     else
                     {
                         await client.Post("ERROR...!");
-                        // Console.WriteLine("ERROR");
+                        Log("Error...!");
                     }
                 }
             }
@@ -576,6 +586,11 @@ namespace ColorlessBlueBotsFlyFuriously
                     post += chars[char_choice];
                 }
                 return post;
+            }
+            void Log(string type)
+            {
+                Console.WriteLine("[" + DateTime.Now + "]: Posted " + type);
+                File.AppendAllText(path + "/logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + Environment.NewLine);
             }
         }
     }
