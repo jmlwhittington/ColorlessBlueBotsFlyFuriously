@@ -152,7 +152,7 @@ namespace ColorlessBlueBotsFlyFuriously
                             if (test == false)
                             {
                                 Log("Sleeping " + first + " minutes...");
-                                Thread.Sleep(first * 1000);
+                                Thread.Sleep(first * 60000);
                             }
                             await WildPost();
                         }
@@ -161,7 +161,7 @@ namespace ColorlessBlueBotsFlyFuriously
                             if (test == false)
                             {
                                 Log("Sleeping " + second + " minutes...");
-                                Thread.Sleep(second * 1000);
+                                Thread.Sleep(second * 60000);
                             }
                             await WildPost();
                         }
@@ -170,7 +170,7 @@ namespace ColorlessBlueBotsFlyFuriously
                             if (test == false)
                             {
                                 Log("Sleeping " + third + " minutes...");
-                                Thread.Sleep(third * 1000);
+                                Thread.Sleep(third * 60000);
                             }
                             await WildPost();
                         }
@@ -179,7 +179,7 @@ namespace ColorlessBlueBotsFlyFuriously
                             if (test == false)
                             {
                                 Log("Sleeping " + fourth + " minutes...");
-                                Thread.Sleep(fourth * 1000);
+                                Thread.Sleep(fourth * 60000);
                             }
                             await WildPost();
                         }
@@ -529,7 +529,7 @@ namespace ColorlessBlueBotsFlyFuriously
                 {
                     string[] error = File.ReadAllLines(path + "/Content/Casandalee/Error.txt");
                     int error_outcome = rand.Next(0, error.Length);
-                    int line = rand.Next(1, 5910);
+                    int line = rand.Next(1, 5920);
                     string post = error[error_outcome] + line;
                     if (test == false)
                     {
