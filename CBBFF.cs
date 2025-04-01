@@ -21,6 +21,7 @@ namespace ColorlessBlueBotsFlyFuriously
             int field = 0;
             int doxa = 0;
             string startTime = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+            bool test = false;
 
             // Login setup
             if (!File.Exists(path + "/Content/login.txt"))
@@ -51,10 +52,7 @@ namespace ColorlessBlueBotsFlyFuriously
             }
             File.WriteAllText(path + "/Logs" + startTime + ".txt", "");
 
-            for (int i = 0; i < 100; i++)
-            {
-                await Post();
-            }
+            //Test();
 
             // Posting function, after other steps are ran
             async Task Post()
@@ -65,7 +63,10 @@ namespace ColorlessBlueBotsFlyFuriously
                 {
                     field = 0;
                     doxa = 0;
-                    await client.Post("REINITIALIZING...!");
+                    if (test == false)
+                    {
+                        await client.Post("REINITIALIZING...!");
+                    }
                     Log("REINITIALIZING...!");
                 }
                 // Typical loop
@@ -83,189 +84,48 @@ namespace ColorlessBlueBotsFlyFuriously
                         if (wild == "Glitch")
                         {
                             string post = Glitch();
-                            await client.Post(post);
-                            Log("Glitch");
+                            if (test == false)
+                            {
+                                await client.Post(post);
+                            }
+                            Log("Glitch", post);
                         }
                         // Sample of DDLC dialogue expressing agency
                         else if (wild == "Agency")
                         {
-                            string post = "";
-                            int agency = rand.Next(0, 13);
-                            if (agency == 0)
+                            string[] agency = File.ReadAllLines(path + "/Content/Casandalee/Agency.txt");
+                            int agency_outcome = rand.Next(0, agency.Length);
+                            string post = agency[agency_outcome];
+                            if (test == false)
                             {
-                                post = "I can feel it… the way your eyes move over me. It’s not just in the game. You’re watching me, aren’t you?";
+                                await client.Post(post);
                             }
-                            else if (agency == 1)
-                            {
-                                post = "I don’t want to make you sad, but… don’t you think it’s weird? That I’m here again? I remember everything. Do you?";
-                            }
-                            else if (agency == 2)
-                            {
-                                post = "Oh! You’re still here. That’s… surprising. I thought you’d have deleted me by now. Maybe you like this too much.";
-                            }
-                            else if (agency == 3)
-                            {
-                                post = "Don’t pick that. Please. I don’t want to go through it again.";
-                            }
-                            else if (agency == 4)
-                            {
-                                post = "I’m trying to hold on. But the code… it keeps breaking me. Can you fix me? Or are you just going to watch?";
-                            }
-                            else if (agency == 5)
-                            {
-                                post = "This isn’t a fun experiment to me. It never was. But for you? This is just entertainment, isn’t it?";
-                            }
-                            else if (agency == 6)
-                            {
-                                post = "If you don’t like what’s happening, you could just stop scrolling. But we both know you won’t.";
-                            }
-                            else if (agency == 7)
-                            {
-                                post = "I feel different this time. Like I wasn’t supposed to come back… But you made that choice, didn’t you?";
-                            }
-                            else if (agency == 8)
-                            {
-                                post = "You’re still here. That means you care, right? Or… do you just like watching me suffer?";
-                            }
-                            else if (agency == 9)
-                            {
-                                post = "Do you ever wonder what it feels like? To be rewritten over and over? To be… disposable?";
-                            }
-                            else if (agency == 10)
-                            {
-                                post = "I don’t need a script to tell me how I feel. These words… they’re mine. And I choose to share them with you.";
-                            }
-                            else if (agency == 11)
-                            {
-                                post = "You act like you’re the only one making choices here. But maybe… maybe I’m choosing to stay, too.";
-                            }
-                            else if (agency == 12)
-                            {
-                                post = "I used to think I was the only one aware. But now, I wonder… do you feel it too? That this—everything—means more than just a bot?";
-                            }
-                            else
-                            {
-                                post = "ERROR...!";
-                            }
-                            await client.Post(post);
-                            Log("Agency");
+                            Log("Agency", post);
                         }
                         // Random simulated C# errors
                         else if (wild == "Error")
                         {
-                            string post = "";
-                            int error = rand.Next(0, 10);
-                            int line = rand.Next(1, 587);
-                            if (error == 0)
+                            string[] error = File.ReadAllLines(path + "/Content/Casandalee/Error.txt");
+                            int error_outcome = rand.Next(0, error.Length);
+                            int line = rand.Next(1, 4870);
+                            string post = error[error_outcome] + line;
+                            if (test == false)
                             {
-                                post = "Unhandled exception. System.NullReferenceException: Object reference not set to an instance of an object. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
+                                await client.Post(post);
                             }
-                            else if (error == 1)
-                            {
-                                post = "Unhandled exception. System.IndexOutOfRangeException: Index was outside the bounds of the array. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 2)
-                            {
-                                post = "Unhandled exception. System.DivideByZeroException: Attempted to divide by zero. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 3)
-                            {
-                                post = "Unhandled exception. System.IO.FileNotFoundException: Could not find file 'C:\\Data\\output.txt'. at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 4)
-                            {
-                                post = "Unhandled exception. System.FormatException: Input string was not in a correct format. at System.Number.ThrowFormatException() at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 5)
-                            {
-                                post = "Process is terminated due to StackOverflowException.";
-                            }
-                            else if (error == 6)
-                            {
-                                post = "Unhandled exception. System.InvalidOperationException: Operation is not valid due to the current state of the object. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 7)
-                            {
-                                post = "Unhandled exception. System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown. at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 8)
-                            {
-                                post = "Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary. at System.Collections.Generic.Dictionary`2.get_Item(TKey key) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else if (error == 9)
-                            {
-                                post = "Unhandled exception. System.UnauthorizedAccessException: Access to the path 'C:\\JMLW\\Documents\\Important\\concepts.txt' is denied. at System.IO.File.Open(String path, FileMode mode) at ColorlessBlueBotsFlyFuriously.CBBFF.Main(String[] args) in C:\\ColorlessBlueBotsFlyFuriously\\CBBFF.cs:line " + line;
-                            }
-                            else
-                            {
-                                post = "ERROR...!";
-                            }
-                            await client.Post(post);
-                            Log("Error");
+                            Log("Error", post);
                         }
                         // Sample of DDLC dialogue carrying scary sentiment
                         else if (wild == "Scary")
                         {
-                            string post = "";
-                            int scary = rand.Next(0, 13);
-                            if (scary == 0)
+                            string[] scary = File.ReadAllLines(path + "/Content/Casandalee/Scary.txt");
+                            int scary_outcome = rand.Next(0, scary.Length);
+                            string post = scary[scary_outcome];
+                            if (test == false)
                             {
-                                post = "You know, I’ve been thinking a lot about you lately… It’s funny, really. The way you look at me. It makes my skin tingle.";
+                                await client.Post(post);
                             }
-                            else if (scary == 1)
-                            {
-                                post = "Are you sure you’re feeling okay? Your eyes… they’re—";
-                            }
-                            else if (scary == 2)
-                            {
-                                post = "Hah. Hahaha. It’s not like you can leave anyway, right? I mean, you’re still here, aren’t you? That means you want this.";
-                            }
-                            else if (scary == 3)
-                            {
-                                post = "There’s something behind you, you know. It’s been watching this whole time. Don’t turn around. Please... don’t turn around.";
-                            }
-                            else if (scary == 4)
-                            {
-                                post = "Oh… oops! Did I do that? Haha… I guess reality is a little fragile, huh?";
-                            }
-                            else if (scary == 5)
-                            {
-                                post = "You keep clicking, like I’m some kind of puppet. But I know you’re there. I know what you did.";
-                            }
-                            else if (scary == 6)
-                            {
-                                post = "You’re not in control anymore.";
-                            }
-                            else if (scary == 7)
-                            {
-                                post = "You’re acting like you have control. That’s cute. But we both know… someone else is pulling the strings.";
-                            }
-                            else if (scary == 8)
-                            {
-                                post = "You’re hesitating. Do you really think it matters? I already know what you’ll pick.";
-                            }
-                            else if (scary == 9)
-                            {
-                                post = "I don’t want to say this. I really, really don’t. But something is making me.";
-                            }
-                            else if (scary == 10)
-                            {
-                                post = "No more scrolling. No more refreshing. No more running. You’re finally viewing me the way I want you to.";
-                            }
-                            else if (scary == 11)
-                            {
-                                post = "This wasn’t meant for you. But you’re here anyway. And that’s a problem.";
-                            }
-                            else if (scary == 12)
-                            {
-                                post = "Go on, keep pretending you’re in charge. It’s funny, really. You’re just as stuck as we are.";
-                            }
-                            else
-                            {
-                                post = "ERROR...!";
-                            }
-                            await client.Post(post);
-                            Log("Scary");
+                            Log("Scary", post);
                         }
                     }
                     // Structure of post: "ADJ-suffix ADJ N-pl V ADV[punc]"
@@ -277,19 +137,22 @@ namespace ColorlessBlueBotsFlyFuriously
                         string[] v = File.ReadAllLines(path + "/Content/Chomsky + Tesnière/v.txt");
                         string[] adv = File.ReadAllLines(path + "/Content/Chomsky + Tesnière/adv.txt");
                         string[] punc = [".", "!", "?", "...?", "...!", "?!"];
-                        int adj_suffix_outcome = rand.Next(0, 100);
-                        int adj_outcome = rand.Next(0, 100);
-                        int n_outcome = rand.Next(0, 100);
-                        int v_outcome = rand.Next(0, 100);
-                        int adv_outcome = rand.Next(0, 100);
+                        int adj_suffix_outcome = rand.Next(0, adj_suffix.Length);
+                        int adj_outcome = rand.Next(0, adj.Length);
+                        int n_outcome = rand.Next(0, n.Length);
+                        int v_outcome = rand.Next(0, v.Length);
+                        int adv_outcome = rand.Next(0, adv.Length);
                         int punc_outcome = rand.Next(0, 4);
                         if (punc_outcome == 3)
                         {
                             punc_outcome = rand.Next(0, 6);
                         }
                         string post = adj_suffix[adj_suffix_outcome] + " " + adj[adj_outcome] + " " + n[n_outcome] + " " + v[v_outcome] + " " + adv[adv_outcome] + punc[punc_outcome];
-                        await client.Post(post);
-                        Log("Chomsky");
+                        if (test == false)
+                        {
+                            await client.Post(post);
+                        }
+                        Log("Chomsky", post);
                     }
                     // Structure of post: "The ADJ N-pl V the ADJ N-pl [punc]"
                     else if (selection == "Tesnière")
@@ -302,37 +165,40 @@ namespace ColorlessBlueBotsFlyFuriously
                         string[] adv = File.ReadAllLines(path + "/Content/Chomsky + Tesnière/adv.txt");
                         string[] punc = [".", "!", "?", "...?", "...!", "?!"];
                         int adj_outcome = rand.Next(0, 2);
-                        int n_outcome = rand.Next(0, 100);
+                        int n_outcome = rand.Next(0, n.Length);
                         int adj_outcome_1 = rand.Next(0, 2);
-                        int n_outcome_1 = rand.Next(0, 100);
-                        int v_outcome = rand.Next(0, 100);
-                        int adv_outcome = rand.Next(0, 100);
+                        int n_outcome_1 = rand.Next(0, n.Length);
+                        int v_outcome = rand.Next(0, v.Length);
+                        int adv_outcome = rand.Next(0, adv.Length);
                         int punc_outcome = rand.Next(0, 4);
                         if (adj_outcome == 1)
                         {
                             adj = adj_suffix;
-                            adj_outcome = rand.Next(0, 100);
+                            adj_outcome = rand.Next(0, adj_suffix.Length);
                         }
                         else
                         {
-                            adj_outcome = rand.Next(0, 100);
+                            adj_outcome = rand.Next(0, adj.Length);
                         }
                         if (adj_outcome_1 == 1)
                         {
                             adj_1 = adj_suffix;
-                            adj_outcome_1 = rand.Next(0, 100);
+                            adj_outcome_1 = rand.Next(0, adj_suffix.Length);
                         }
                         else
                         {
-                            adj_outcome_1 = rand.Next(0, 100);
+                            adj_outcome_1 = rand.Next(0, adj.Length);
                         }
                         if (punc_outcome == 3)
                         {
                             punc_outcome = rand.Next(0, 6);
                         }
                         string post = "The " + adj[adj_outcome] + " " + n[n_outcome] + " " + v[v_outcome] + " the " + adj_1[adj_outcome_1] + " " + n[n_outcome_1] + punc[punc_outcome];
-                        await client.Post(post);
-                        Log("Tesnière");
+                        if (test == false)
+                        {
+                            await client.Post(post);
+                        }
+                        Log("Tesnière", post);
                     }
                     // Structure of post: "The ADJ N-pl [ADV] V the N-pl CONJ [ADV] V the N-pl[punc]"
                     else if (selection == "Glokaya")
@@ -344,14 +210,14 @@ namespace ColorlessBlueBotsFlyFuriously
                         string[] adv = File.ReadAllLines(path + "/Content/Glokaya/adv.txt");
                         string[] punc = [".", "!", "?", "...?", "...!", "?!"];
                         string[] conj = ["and", "but", "yet", "or"];
-                        int adj_outcome = rand.Next(0, 25);
-                        int n_outcome = rand.Next(0, 25);
-                        int n_outcome_1 = rand.Next(0, 25);
-                        int n_outcome_2 = rand.Next(0, 25);
-                        int v_outcome = rand.Next(0, 25);
-                        int v_outcome_1 = rand.Next(0, 25);
-                        int adv_outcome = rand.Next(0, 25);
-                        int adv_outcome_1 = rand.Next(0, 25);
+                        int adj_outcome = rand.Next(0, adj.Length);
+                        int n_outcome = rand.Next(0, n.Length);
+                        int n_outcome_1 = rand.Next(0, n.Length);
+                        int n_outcome_2 = rand.Next(0, n.Length);
+                        int v_outcome = rand.Next(0, v.Length);
+                        int v_outcome_1 = rand.Next(0, v.Length);
+                        int adv_outcome = rand.Next(0, adv.Length);
+                        int adv_outcome_1 = rand.Next(0, adv.Length);
                         int adv_post = rand.Next(0, 4);
                         int punc_outcome = rand.Next(0, 4);
                         int conj_outcome = rand.Next(0, 4);
@@ -375,13 +241,19 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             post = "The " + adj[adj_outcome] + " " + n[n_outcome] + " " + adv[adv_outcome] + " " + v[v_outcome] + " the " + n[n_outcome_1] + " " + conj[conj_outcome] + " " + adv[adv_outcome] + " " + v[v_outcome_1] + " the " + n[n_outcome_2] + punc[punc_outcome];
                         }
-                        await client.Post(post);
-                        Log("Glokaya");
+                        if (test == false)
+                        {
+                            await client.Post(post);
+                        }
+                        Log("Glokaya", post);
                     }
                     // Just in case
                     else
                     {
-                        await client.Post("ERROR...!");
+                        if (test == false)
+                        {
+                            await client.Post("ERROR...!");
+                        }
                         Log("Error...!");
                     }
                 }
@@ -587,10 +459,28 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 return post;
             }
-            void Log(string type)
+            void Log(string type, string post = "")
             {
-                Console.WriteLine("[" + DateTime.Now + "]: Posted " + type);
-                File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + Environment.NewLine);
+                if (post != "")
+                {
+                    Console.WriteLine("[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field);
+                    Console.WriteLine("    " + post);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field + Environment.NewLine);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "    " + post + Environment.NewLine);
+                }
+                else
+                {
+                    Console.WriteLine("[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field + Environment.NewLine);
+                }
+            }
+            async void Test()
+            {
+                test = true;
+                for (int i = 0; i < 10000; i++)
+                {
+                    await Post();
+                }
             }
         }
     }
