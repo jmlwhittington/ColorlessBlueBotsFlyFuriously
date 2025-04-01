@@ -6,6 +6,10 @@ using X.Bluesky;
 using X.Bluesky.Models;
 using System;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics;
+using System.Reflection.Metadata;
 
 namespace ColorlessBlueBotsFlyFuriously
 {
@@ -23,6 +27,19 @@ namespace ColorlessBlueBotsFlyFuriously
             string startTime = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
             bool test = false;
 
+            // Logging setup
+            if (!Directory.Exists(path + "/Logs/"))
+            {
+                Directory.CreateDirectory(path + "/Logs");
+                Log("Creating log directory...");
+            }
+            Log("Creating log file...");
+            File.WriteAllText(path + "/Logs/" + startTime + ".txt", "");
+
+            // Initialization
+            Log("Welcome to ColorlessBlueBotFlyFuriously!");
+            Log("Source repo: https://github.com/jmlwhittington/ColorlessBlueBotsFlyFuriously");
+
             // Login setup
             if (!File.Exists(path + "/Content/login.txt"))
             {
@@ -31,28 +48,45 @@ namespace ColorlessBlueBotsFlyFuriously
                     "HANDLE:" + Environment.NewLine + Environment.NewLine + Environment.NewLine +
                     "PASSWORD/APP PASSWORD:" + Environment.NewLine
                 );
-                Console.WriteLine(DateTime.Now + ": You need to input your handle and password/app password into login.txt! It can be found in the Content folder at the same location as this program." + Environment.NewLine + "Press any key to exit...");
+                Log("You need to input your handle and password/app password into login.txt! It can be found in the Content folder at the same location as this program.");
+                Log("Press any key to exit...");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
             else
             {
+                Log("Retrieving login details...");
                 string[] login = File.ReadAllLines(path + "/Content/login.txt");
                 foreach (string item in login)
                 {
                     handle = login[3];
                     pass = login[6];
                 }
+                Log("Login success!");
             }
 
-            // Logging setup
-            if (!Directory.Exists(path + "/Logs"))
-            {
-                Directory.CreateDirectory(path + "/Logs");
-            }
-            File.WriteAllText(path + "/Logs" + startTime + ".txt", "");
-
+            // For testing in console without posting
             //Test();
+
+            // Initation and cycling
+            while (test == false)
+            {
+                // Syncing post time
+                if (DateTime.Now.ToString().Substring(DateTime.Now.ToString().Length - 8).Substring(0, 2) != "00")
+                {
+                    Log("Waiting for the minute mark...");
+                    while (DateTime.Now.ToString().Substring(DateTime.Now.ToString().Length - 5).Substring(0, 2) != "00")
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    Log("Waiting for the hour mark...");
+                    while (DateTime.Now.ToString().Substring(DateTime.Now.ToString().Length - 8).Substring(0, 2) != "00")
+                    {
+                        Thread.Sleep(60000);
+                    }
+                }
+                await Post();
+            }
 
             // Posting function, after other steps are ran
             async Task Post()
@@ -67,7 +101,7 @@ namespace ColorlessBlueBotsFlyFuriously
                     {
                         await client.Post("REINITIALIZING...!");
                     }
-                    Log("REINITIALIZING...!");
+                    Log("Posted REINITIALIZING...!");
                 }
                 // Typical loop
                 else
@@ -77,55 +111,76 @@ namespace ColorlessBlueBotsFlyFuriously
                     // The most interesting category...
                     if (selection == "Wild")
                     {
-                        Chatter();
+                        int chatter = Divination();
                         string blank = Blank();
-                        string wild = Wild();
-                        // Glitch text in DDLC style
-                        if (wild == "Glitch")
+                        int first = 0;
+                        int second = 0;
+                        int third = 0;
+                        int fourth = 0;
+                        if (blank == "n")
                         {
-                            string post = Glitch();
-                            if (test == false)
-                            {
-                                await client.Post(post);
-                            }
-                            Log("Glitch", post);
+                            await WildPost();
                         }
-                        // Sample of DDLC dialogue expressing agency
-                        else if (wild == "Agency")
+                        switch (chatter)
                         {
-                            string[] agency = File.ReadAllLines(path + "/Content/Casandalee/Agency.txt");
-                            int agency_outcome = rand.Next(0, agency.Length);
-                            string post = agency[agency_outcome];
-                            if (test == false)
-                            {
-                                await client.Post(post);
-                            }
-                            Log("Agency", post);
+                            case 1:
+                                first = rand.Next(1, 60);
+                                Log("Chatter: " + chatter + " | First: " + first + " | Doxa: " + doxa + " | Field: " + field);
+                                break;
+                            case 2:
+                                first = rand.Next(1, 59);
+                                second = rand.Next(first + 1, 60);
+                                Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Doxa: " + doxa + " | Field: " + field);
+                                break;
+                            case 3:
+                                first = rand.Next(1, 58);
+                                second = rand.Next(first + 1, 59);
+                                third = rand.Next(second + 1, 60);
+                                Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Third: " + third + " | Doxa: " + doxa + " | Field: " + field);
+                                break;
+                            case 4:
+                                first = rand.Next(1, 57);
+                                second = rand.Next(first + 1, 58);
+                                third = rand.Next(second + 1, 59);
+                                fourth = rand.Next(third + 1, 60);
+                                Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Third: " + third + " | Fourth: " + fourth + " | Doxa: " + doxa + " | Field: " + field);
+                                break;
                         }
-                        // Random simulated C# errors
-                        else if (wild == "Error")
+                        if (first > 0)
                         {
-                            string[] error = File.ReadAllLines(path + "/Content/Casandalee/Error.txt");
-                            int error_outcome = rand.Next(0, error.Length);
-                            int line = rand.Next(1, 4870);
-                            string post = error[error_outcome] + line;
                             if (test == false)
                             {
-                                await client.Post(post);
+                                Log("Sleeping " + first + " minutes...");
+                                Thread.Sleep(first * 1000);
                             }
-                            Log("Error", post);
+                            await WildPost();
                         }
-                        // Sample of DDLC dialogue carrying scary sentiment
-                        else if (wild == "Scary")
+                        if (second > 0)
                         {
-                            string[] scary = File.ReadAllLines(path + "/Content/Casandalee/Scary.txt");
-                            int scary_outcome = rand.Next(0, scary.Length);
-                            string post = scary[scary_outcome];
                             if (test == false)
                             {
-                                await client.Post(post);
+                                Log("Sleeping " + second + " minutes...");
+                                Thread.Sleep(second * 1000);
                             }
-                            Log("Scary", post);
+                            await WildPost();
+                        }
+                        if (third > 0)
+                        {
+                            if (test == false)
+                            {
+                                Log("Sleeping " + third + " minutes...");
+                                Thread.Sleep(third * 1000);
+                            }
+                            await WildPost();
+                        }
+                        if (fourth > 0)
+                        {
+                            if (test == false)
+                            {
+                                Log("Sleeping " + fourth + " minutes...");
+                                Thread.Sleep(fourth * 1000);
+                            }
+                            await WildPost();
                         }
                     }
                     // Structure of post: "ADJ-suffix ADJ N-pl V ADV[punc]"
@@ -152,7 +207,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             await client.Post(post);
                         }
-                        Log("Chomsky", post);
+                        Log("Chomsky" + " | Doxa: " + doxa + " | Field: " + field, post);
                     }
                     // Structure of post: "The ADJ N-pl V the ADJ N-pl [punc]"
                     else if (selection == "Tesnière")
@@ -198,7 +253,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             await client.Post(post);
                         }
-                        Log("Tesnière", post);
+                        Log("Tesnière" + " | Doxa: " + doxa + " | Field: " + field, post);
                     }
                     // Structure of post: "The ADJ N-pl [ADV] V the N-pl CONJ [ADV] V the N-pl[punc]"
                     else if (selection == "Glokaya")
@@ -245,7 +300,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             await client.Post(post);
                         }
-                        Log("Glokaya", post);
+                        Log("Posted Glokaya" + " | Doxa: " + doxa + " | Field: " + field, post);
                     }
                     // Just in case
                     else
@@ -254,7 +309,7 @@ namespace ColorlessBlueBotsFlyFuriously
                         {
                             await client.Post("ERROR...!");
                         }
-                        Log("Error...!");
+                        Log("Posted ERROR...!" + " | Doxa: " + doxa + " | Field: " + field);
                     }
                 }
             }
@@ -290,7 +345,7 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 else
                 {
-                    return 0;
+                    return 1;
                 }
             }
             // "Exploding dice" step, rare occurrence to change doxa more strongly
@@ -385,13 +440,8 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 else
                 {
-                    return "";
+                    return "Chomsky";
                 }
-            }
-            // "Chatterbox hour" step, determines how many more times the bot posts each cycle
-            void Chatter()
-            {
-                // Will flesh out later
             }
             // "Blank on hour mark" step, determines if bot posts at start of cycle or not
             string Blank()
@@ -417,7 +467,7 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 else
                 {
-                    return "";
+                    return "n";
                 }
             }
             // "Wild output" step, determines bot's atypical function
@@ -443,7 +493,60 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 else
                 {
-                    return "";
+                    return "Glitch";
+                }
+            }
+            // To make the Post function easier
+            async Task WildPost()
+            {
+                BlueskyClient client = new BlueskyClient(handle, pass);
+                string wild = Wild();
+                // Glitch text in DDLC style
+                if (wild == "Glitch")
+                {
+                    string post = Glitch();
+                    if (test == false)
+                    {
+                        await client.Post(post);
+                    }
+                    Log("Posted Glitch" + " | Doxa: " + doxa + " | Field: " + field, post);
+                }
+                // Sample of DDLC dialogue expressing agency
+                else if (wild == "Agency")
+                {
+                    string[] agency = File.ReadAllLines(path + "/Content/Casandalee/Agency.txt");
+                    int agency_outcome = rand.Next(0, agency.Length);
+                    string post = agency[agency_outcome];
+                    if (test == false)
+                    {
+                        await client.Post(post);
+                    }
+                    Log("Posted Agency" + " | Doxa: " + doxa + " | Field: " + field, post);
+                }
+                // Random simulated C# errors
+                else if (wild == "Error")
+                {
+                    string[] error = File.ReadAllLines(path + "/Content/Casandalee/Error.txt");
+                    int error_outcome = rand.Next(0, error.Length);
+                    int line = rand.Next(1, 5910);
+                    string post = error[error_outcome] + line;
+                    if (test == false)
+                    {
+                        await client.Post(post);
+                    }
+                    Log("Posted Error" + " | Doxa: " + doxa + " | Field: " + field, post);
+                }
+                // Sample of DDLC dialogue carrying scary sentiment
+                else if (wild == "Scary")
+                {
+                    string[] scary = File.ReadAllLines(path + "/Content/Casandalee/Scary.txt");
+                    int scary_outcome = rand.Next(0, scary.Length);
+                    string post = scary[scary_outcome];
+                    if (test == false)
+                    {
+                        await client.Post(post);
+                    }
+                    Log("Posted Scary" + " | Doxa: " + doxa + " | Field: " + field, post);
                 }
             }
             // Generates the glitch text
@@ -459,25 +562,26 @@ namespace ColorlessBlueBotsFlyFuriously
                 }
                 return post;
             }
-            void Log(string type, string post = "")
+            void Log(string log, string post = "")
             {
                 if (post != "")
                 {
-                    Console.WriteLine("[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field);
-                    Console.WriteLine("    " + post);
-                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field + Environment.NewLine);
-                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "    " + post + Environment.NewLine);
+                    Console.WriteLine("[" + DateTime.Now + "]: " + log);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: " + log + Environment.NewLine);
                 }
                 else
                 {
-                    Console.WriteLine("[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field);
-                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: Posted " + type + " | Doxa: " + doxa + " | Field: " + field + Environment.NewLine);
+                    Console.WriteLine("[" + DateTime.Now + "]: " + log);
+                    Console.WriteLine("    " + post);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "[" + DateTime.Now + "]: " + log + Environment.NewLine);
+                    File.AppendAllText(path + "/Logs/" + startTime + ".txt", "    " + post + Environment.NewLine);
                 }
             }
             async void Test()
             {
+                Log("Running test...");
                 test = true;
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 1000; i++)
                 {
                     await Post();
                 }
