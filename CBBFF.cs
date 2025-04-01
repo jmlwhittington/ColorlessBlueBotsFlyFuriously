@@ -86,6 +86,7 @@ namespace ColorlessBlueBotsFlyFuriously
                     }
                 }
                 await Post();
+                Thread.Sleep(60000);
             }
 
             // Posting function, after other steps are ran
