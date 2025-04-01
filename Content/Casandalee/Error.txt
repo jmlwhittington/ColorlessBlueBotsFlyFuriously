@@ -1,0 +1,50 @@
+System.NullReferenceException: Object reference not set to an instance of an object. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.InvalidOperationException: Operation is not allowed after the program has started. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.StackOverflowException: The operation could not be completed due to excessive recursion. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IndexOutOfRangeException: Index was outside the bounds of the array. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.AccessViolationException: Attempted to read or write protected memory. This is often an indication that other memory is corrupt. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ArgumentException: Value cannot be null. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.FileNotFoundException: Could not find file 'script.txt'. at Program.LoadFile() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.FormatException: Input string was not in a correct format. at Program.ParseData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.TypeLoadException: Could not load type 'Program' from assembly 'Assembly-CSharp'. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.TimeoutException: The operation has timed out. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ObjectDisposedException: The object has already been disposed. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.UnauthorizedAccessException: Access to the path is denied. at Program.Log() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.NotImplementedException: The method or operation is not implemented. at Program.LoadData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. at Program.Update() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.DivideByZeroException: Attempted to divide by zero. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.InvalidCastException: Unable to cast object of type 'System.Int32' to type 'System.String'. at Program.ProcessData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.UnauthorizedAccessException: Cannot access the file 'log.dat'. at Program.Log() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. at Program.InvokeMethod() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ObjectDisposedException: The object 'storyLine' has already been disposed. at Program.DisplayStory() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.MissingMethodException: Method 'Update()' not found. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ArgumentNullException: Value cannot be null. Parameter name: data at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.IOException: The process cannot access the file 'data.txt' because it is being used by another process. at Program.LoadFile() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.InvalidOperationException: The collection was modified; enumeration operation may not execute. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.BadImageFormatException: The file format is invalid. at Program.LoadAssembly() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ArgumentNullException: Value cannot be null. Parameter name: input at Program.ProcessData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.FileLoadException: Could not load file or assembly 'Casandalee.dll'. The system cannot find the file specified. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ObjectDisposedException: Cannot access a disposed object. Object name: 'session'. at Program.TerminateSession() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.InvalidOperationException: Collection was modified; enumeration operation may not execute. at System.Collections.Generic.List'1.Enumerator.MoveNext() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Data.SqlClient.SqlException: Timeout expired. The operation has timed out. at Program.ExecuteQuery() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Reality\'. at System.IO.File.OpenRead() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.TypeInitializationException: The type initializer for 'Casandalee' threw an exception. at Program.Initialize() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.InvalidCastException: Specified cast is not valid. at Program.ConvertData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Security.SecurityException: Requested registry access is not allowed. at Program.ModifySettings() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.EndOfStreamException: Unable to read beyond the end of the stream. at Program.ReadData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Runtime.Serialization.SerializationException: Failed to deserialize object. Data may have been tampered with. at Program.DeserializeState() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ExecutionEngineException: A fatal exception has occurred in the runtime. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.ComponentModel.Win32Exception: The operation completed successfully. at Program.Main() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Diagnostics.EventLogException: Cannot write to event log. The log is full. at Program.LogEvent() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Runtime.Remoting.RemotingException: The object has been disconnected or does not exist at the server. at Program.Connect() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Threading.SynchronizationLockException: Object synchronization method was called from an unsynchronized block of code. at Program.LockResource() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Threading.Tasks.TaskCanceledException: A task was canceled. at Program.WaitForResponse() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.IO.InvalidDataException: The data is in an unexpected format. at Program.ProcessFile() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Collections.Concurrent.ConcurrentQueueFullException: The queue is at maximum capacity. at Program.EnqueueTask() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Reflection.ReflectionTypeLoadException: Unable to load one or more of the requested types. at Program.InitializeTypes() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Threading.AbandonedMutexException: The wait handle was abandoned. at Program.AcquireLock() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Xml.XmlException: Unexpected end of file while parsing XML. at Program.ParseXml() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Diagnostics.TraceListenerException: A trace listener failed to write to the output. at Program.LogTrace() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Net.WebException: The remote server returned an unexpected response. at Program.FetchData() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
+System.Text.DecoderFallbackException: Unable to translate bytes to Unicode characters. at Program.DecodeText() in C:\ColorlessBlueBotsFlyFuriously\CBBFF.cs:line 
