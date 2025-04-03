@@ -125,25 +125,25 @@ namespace ColorlessBlueBotsFlyFuriously
                         switch (chatter)
                         {
                             case 1:
-                                first = rand.Next(1, 60);
+                                first = rand.Next(1, 59);
                                 Log("Chatter: " + chatter + " | First: " + first + " | Doxa: " + doxa + " | Field: " + field);
                                 break;
                             case 2:
-                                first = rand.Next(1, 59);
-                                second = rand.Next(first + 1, 60);
+                                first = rand.Next(1, 58);
+                                second = rand.Next(1, 59 - first);
                                 Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Doxa: " + doxa + " | Field: " + field);
                                 break;
                             case 3:
-                                first = rand.Next(1, 58);
-                                second = rand.Next(first + 1, 59);
-                                third = rand.Next(second + 1, 60);
+                                first = rand.Next(1, 57);
+                                second = rand.Next(1, 58 - first);
+                                third = rand.Next(1, 59 - first - second);
                                 Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Third: " + third + " | Doxa: " + doxa + " | Field: " + field);
                                 break;
                             case 4:
-                                first = rand.Next(1, 57);
-                                second = rand.Next(first + 1, 58);
-                                third = rand.Next(second + 1, 59);
-                                fourth = rand.Next(third + 1, 60);
+                                first = rand.Next(1, 56);
+                                second = rand.Next(1, 57 - first);
+                                third = rand.Next(1, 58 - first - second);
+                                fourth = rand.Next(1, 59 - first - second - third);
                                 Log("Chatter: " + chatter + " | First: " + first + " | Second: " + second + " | Third: " + third + " | Fourth: " + fourth + " | Doxa: " + doxa + " | Field: " + field);
                                 break;
                         }
