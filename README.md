@@ -1,5 +1,5 @@
 # ColorlessBlueBotsFlyFuriously
-A Bluesky bot written in C# to post Markovian variations of popular linguistic phrases like "Colorless green ideas sleep furiously." Totally unconscious!
+A Bluesky bot written in C# to post Markovian variations of popular linguistic phrases like "Colorless green ideas sleep furiously." Totally unconscious! Developed for ENG6810: Theories of Texts and Technology at UCF.
 
 If you have any questions, feel free to create a discussion or raise an issue!
 
